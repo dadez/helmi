@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"strings"
-	"time"
 
 	"code.cloudfoundry.org/lager"
 	"github.com/monostream/helmi/pkg/broker"
@@ -29,15 +28,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	catalogSource := configuration.CatalogURL
-	catalogUpdateInterval := time.Minute * 15
-	if len(configuration.CatalogUpdateInterval) > 0 {
-		catalogUpdateInterval, err = time.ParseDuration(configuration.CatalogUpdateInterval)
-		if err != nil {
-			log.Fatal("invalid env var CATALOG_UPDATE_INTERVAL: " + err.Error())
-		}
-	}
-	c, err := catalog.New(catalogSource, catalogUpdateInterval)
+	c, err := catalog.New(configuration.CatalogPath)
 
 	if err != nil {
 		log.Fatal("Failed to parse catalog. Did you set CATALOG_URL correctly? Error:", err)
