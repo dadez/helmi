@@ -39,13 +39,7 @@ spec:
           {{- if .Values.helmNamespace }}
           - name: HELM_NAMESPACE
             value: {{ .Values.helmNamespace | quote }}
-          {{- end }}
-          - name: CATALOG_URL
-            value: {{ required ".Values.catalogUrl is required!" .Values.catalogUrl | quote }}
-          {{- if .Values.repositories }}
-          - name: REPOSITORY_URLS
-            value: {{ .Values.repositories | toJson | quote }}
-          {{- end }}
+          {{- end }}     
           {{- if .Values.usePassword }}
           - name: USERNAME
             valueFrom:

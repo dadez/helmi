@@ -8,25 +8,18 @@ serviceEndpointDomain: ~
 # ingress domain of helmi provisioned services
 baseIngressDomain: ~
 
-# map of helm repos to add during initialization, for example:
-#  --set 'repositories.monostream=http://helm-charts.monocloud.io'
-repositories: ~
-
-# URL of the helmi catalog path or url (e.g. http://example.com/catalog.zip)
-catalogUrl: ~
+# helm namespace
+helmNamespace: ~
 
 # tiller namespace
 tillerNamespace: ~
-
-# helm namespace
-helmNamespace: ~
 
 # Bind ports on the hostNetwork
 hostNetwork: false
 
 image:
   repository: monostream/helmi
-  tag: "20190411.0"
+  tag: "latest"
   pullPolicy: IfNotPresent
 
 ingress:

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -22,12 +21,6 @@ func main() {
 	logger.RegisterSink(lager.NewWriterSink(os.Stdout, lager.DEBUG))
 	logger.RegisterSink(lager.NewWriterSink(os.Stderr, lager.ERROR))
 
-	// expects a JSON map in the form of "name":"http://url" pairs
-	err := parseHelmReposFromJSON(configuration.RepositoryURLs)
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	c, err := catalog.New(configuration.CatalogPath)
 
 	if err != nil {
@@ -46,25 +39,6 @@ func main() {
 
 	b := broker.NewBroker(c, configuration, logger)
 	b.Run()
-}
-
-func parseHelmReposFromJSON(helmReposJSON string) error {
-	var helmRepos map[string]string
-
-	err := json.Unmarshal([]byte(helmReposJSON), &helmRepos)
-
-	if err != nil {
-		return err
-	}
-
-	for repo, url := range helmRepos {
-		err := helm.RepoAdd(repo, url)
-		if err != nil {
-			return fmt.Errorf("failed to update repository %s: %s", repo, err)
-		}
-	}
-
-	return helm.RepoUpdate()
 }
 
 func verifyChartVersions(catalog *catalog.Catalog) error {

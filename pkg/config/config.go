@@ -6,9 +6,8 @@ import (
 )
 
 type Config struct {
-	RepositoryURLs string `env:"REPOSITORY_URLS" default:"{}"`
-	HelmNamespace  string `env:"HELM_NAMESPACE"`
-	IngressDomain  string `env:"INGRESS_DOMAIN"`
+	HelmNamespace string `env:"HELM_NAMESPACE"`
+	IngressDomain string `env:"INGRESS_DOMAIN"`
 
 	Username string `env:"USERNAME"`
 	Password string `env:"PASSWORD"`
