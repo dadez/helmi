@@ -10,12 +10,12 @@ type Config struct {
 	HelmNamespace  string `env:"HELM_NAMESPACE"`
 	IngressDomain  string `env:"INGRESS_DOMAIN"`
 
-	Username  string `env:"USERNAME"`
-	Password  string `env:"PASSWORD"`
-	Port      string `env:"PORT" default:"5000"`
+	Username string `env:"USERNAME"`
+	Password string `env:"PASSWORD"`
+	Port     string `env:"PORT" default:"5000"`
 
-	CatalogURL             string `env:"CATALOG_URL" default:"./catalog"`
-	CatalogUpdateInterval  string `env:"CATALOG_UPDATE_INTERVAL" default:"20s"`
+	CatalogURL            string `env:"CATALOG_URL" default:"./catalog"`
+	CatalogUpdateInterval string `env:"CATALOG_UPDATE_INTERVAL" default:"20s"`
 }
 
 // This loads environment variables or sets a default value based on the tag in the struct definition

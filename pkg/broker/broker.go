@@ -32,10 +32,10 @@ type Broker struct {
 func NewBroker(catalog *catalog.Catalog, config *config.Config, logger lager.Logger) *Broker {
 	router := mux.NewRouter()
 	b := &Broker{
-		catalog: catalog,
-		logger:  logger,
-		router:  router,
-		addr:    ":" + config.Port,
+		catalog:       catalog,
+		logger:        logger,
+		router:        router,
+		addr:          ":" + config.Port,
 		helmNamespace: config.HelmNamespace,
 		ingressDomain: config.IngressDomain,
 	}
